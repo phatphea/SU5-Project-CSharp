@@ -36,11 +36,11 @@ namespace Purchasing_Management_System
         //Load all user in datagridview
         private void UserManagementFrm_Load(object sender, EventArgs e)
         {
-           /* List<Dictionary<string, object>> data = dao.LoadAllUsers();
+            List<Dictionary<string, object>> data = dao.LoadAllUsers();
             foreach (Dictionary<string, object> usr in data)
             {
-                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"], usr["Position"], usr["UserRole"]);
-            }*/
+                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"]);
+            }
         }
         private void enableControl(Boolean val)
         {
@@ -49,27 +49,27 @@ namespace Purchasing_Management_System
             btnToolDelete.Enabled = val;
             dataGridView1.Enabled = val;
         }
-        string role;
+        //string role;
         private void radAdmin_CheckedChanged(object sender, EventArgs e)
         {
-            role = "Admin";
+            //role = "Admin";
         }
 
         private void radSubAdmin_CheckedChanged(object sender, EventArgs e)
         {
-            role = "Sub Admin";
+            //role = "Sub Admin";
         }
 
         private void radUser_CheckedChanged(object sender, EventArgs e)
         {
-            role = "User";
+            //role = "User";
         }
 
         //add new
         private void btnToolAdd_Click(object sender, EventArgs e)
         {
             //validate data before save
-            if (cmd.isEmpty(txtName, txtPw, txtConfirm, txtPosition) == true) { return; }; //validate if empty
+            if (cmd.isEmpty(txtName, txtPw, txtConfirm) == true) { return; }; //validate if empty
             if (cmd.isMatch(txtPw, txtConfirm) == false) { return; }; //validate if not match
 
             //check dupplicate username
@@ -82,10 +82,10 @@ namespace Purchasing_Management_System
             };
 
             //add record to db and datagridview
-            long userID = dao.addUser(txtName.Text, txtConfirm.Text,txtPosition.Text, role);
+            long userID = dao.addUser(txtName.Text, txtConfirm.Text);
             if (userID > 0)
             {
-                dataGridView1.Rows.Add(userID, txtName.Text, txtConfirm.Text, txtPosition, role);
+                dataGridView1.Rows.Add(userID, txtName.Text, txtConfirm.Text);
                 resestBox();
             }
             else
@@ -138,14 +138,14 @@ namespace Purchasing_Management_System
                 txtName.Text = r.Cells[1].Value.ToString();
                 txtPw.Text = r.Cells[2].Value.ToString();
                 txtConfirm.Text = r.Cells[2].Value.ToString();
-                txtPosition.Text = r.Cells[3].Value.ToString();
+                
 
                 enableControl(false); //disable control Add Delete Search in form
                 btnToolEdit.Text = "  Save Change";
             }
             else
             {
-                if (cmd.isEmpty(txtName, txtPw, txtConfirm, txtPosition) == true) { return; }; //validate if empty
+                if (cmd.isEmpty(txtName, txtPw, txtConfirm) == true) { return; }; //validate if empty
                 if (cmd.isMatch(txtPw, txtConfirm) == false) { return; }; //validate if not match
                 if (txtName.Text != r.Cells[1].Value.ToString())
                 {
@@ -159,12 +159,11 @@ namespace Purchasing_Management_System
                     };
                 }
 
-                if (dao.updateUser(txtID.Text, txtName.Text, txtConfirm.Text, txtPosition.Text, role))
+                if (dao.updateUser(txtID.Text, txtName.Text, txtConfirm.Text))
                 {
                     r.Cells[1].Value = txtName.Text;
                     r.Cells[2].Value = txtConfirm.Text;
-                    r.Cells[3].Value = txtPosition.Text;
-                    r.Cells[4].Value = role;
+                   
 
                     enableControl(true); //reopen control Add Delete Search in form
                     btnToolEdit.Text = "  Edit";
@@ -201,7 +200,7 @@ namespace Purchasing_Management_System
                             List<Dictionary<string, object>> searchID = dao.searchUserByID(search.txtSearchValue.Text);
                             foreach (Dictionary<string, object> usr in searchID)
                             {
-                                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"], usr["Position"], usr["Role"]);
+                                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"]);
                             }
                             break;
 
@@ -209,7 +208,7 @@ namespace Purchasing_Management_System
                             List<Dictionary<string, object>> searchName = dao.searchUsersByusrName(search.txtSearchValue.Text);
                             foreach (Dictionary<string, object> usr in searchName)
                             {
-                                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"], usr["Position"], usr["Role"]);
+                                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"]);
                             }
                             break;
                     }
