@@ -1,0 +1,16 @@
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\bin\Debug\Purchasing Management System.exe.config
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\bin\Debug\Purchasing Management System.exe
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\bin\Debug\Purchasing Management System.pdb
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.csproj.AssemblyReference.cache
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.csproj.SuggestedBindingRedirects.cache
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.Properties.Resources.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.csproj.GenerateResource.cache
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.csproj.CoreCompileInputs.cache
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.exe
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.pdb
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.LoginFrm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.MainForm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.UserManagementFrm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.SearchFrm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.DatagridviewVendorFrm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.VendorManagementFrm.resources
