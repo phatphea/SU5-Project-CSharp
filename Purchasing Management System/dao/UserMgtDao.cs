@@ -13,21 +13,23 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand(" select UserID, UserName, UserPassword  from [USER] ", Program.con);
+            OleDbCommand cmd = new OleDbCommand(" select UserID, UserName, UserPassword, UserPosition, UserRole, Is_Deactivated from [USER] order by UserID asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 string uid = dr["userID"].ToString();
                 string uname = dr["UserName"].ToString();
                 string upass = dr["UserPassword"].ToString();
-                //string Position = dr["Position"].ToString();
-                //string UserRole = dr["UserRole"].ToString();
+                string UserPosition = dr["UserPosition"].ToString();
+                string UserRole = dr["UserRole"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("uid", uid);
                 usr.Add("uname", uname);
                 usr.Add("upass", upass);
-                //usr.Add("Position", Position);
-                //usr.Add("UserRole", UserRole);
+                usr.Add("UserPosition", UserPosition);
+                usr.Add("UserRole", UserRole);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
@@ -48,10 +50,10 @@ namespace Purchasing_Management_System.dao
             return false;
         }
 
-        public long addUser(String usrName, String passWord)
+        public long addUser(String usrName, String passWord, String usrPosition, String usrRole)
         {
 
-            OleDbCommand cmd = new OleDbCommand(" INSERT INTO [USER] ( UserName, UserPassword) VALUES('" + usrName + "','" + passWord + "') ", Program.con);
+            OleDbCommand cmd = new OleDbCommand(" INSERT INTO [USER] ( UserName, UserPassword, UserPosition, UserRole) VALUES('" + usrName + "','" + passWord + "','"+usrPosition+"','"+usrRole+"') ", Program.con);
             int count = cmd.ExecuteNonQuery();
             if (count > 0)
             {
@@ -72,9 +74,9 @@ namespace Purchasing_Management_System.dao
             }
             return false;
         }
-        public Boolean updateUser(String userId, String usrName, String usrpassWord)
+        public Boolean updateUser(String userId, String usrName, String usrpassWord, String usrPosition, String usrRole)
         {
-            OleDbCommand cmd = new OleDbCommand(" update [USER] set UserName='" + usrName + "', UserPassword='" + usrpassWord + "' where UserID = " + userId + " ", Program.con);
+            OleDbCommand cmd = new OleDbCommand(" update [USER] set UserName='" + usrName + "', UserPassword='" + usrpassWord + "', UserPosition='"+usrPosition+ "', UserRole='" + usrRole+"' where UserID = " + userId + " ", Program.con);
             int count = cmd.ExecuteNonQuery();
             if (count > 0)
             {
@@ -86,21 +88,23 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select UserID, UserName, UserPassword from [USER] where UserID=" + id + " ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select UserID, UserName, UserPassword, UserPosition, UserRole, Is_Deactivated from [USER] where UserID=" + id + " ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 string uid = dr["userID"].ToString();
                 string uname = dr["UserName"].ToString();
                 string upass = dr["UserPassword"].ToString();
-                //string Position = dr["Position"].ToString();
-                //string Role = dr["Role"].ToString();
+                string UserPosition = dr["UserPosition"].ToString();
+                string UserRole = dr["UserRole"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("uid", uid);
                 usr.Add("uname", uname);
                 usr.Add("upass", upass);
-                //usr.Add("Position", Position);
-                //usr.Add("Role", Role);
+                usr.Add("UserPosition", UserPosition);
+                usr.Add("UserRole", UserRole);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
@@ -111,26 +115,38 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select UserID, UserName, UserPassword from [USER] where UserName Like '%" + usrName + "%' ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select UserID, UserName, UserPassword, UserPosition, UserRole, Is_Deactivated from [USER] where UserName Like '%" + usrName + "%' ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
                 string uid = dr["userID"].ToString();
                 string uname = dr["UserName"].ToString();
                 string upass = dr["UserPassword"].ToString();
-               // string Position = dr["Position"].ToString();
-                //string Role = dr["Role"].ToString();
+                string UserPosition = dr["UserPosition"].ToString();
+                string UserRole = dr["UserRole"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("uid", uid);
                 usr.Add("uname", uname);
                 usr.Add("upass", upass);
-                //usr.Add("Position", Position);
-                //usr.Add("Role", Role);
+                usr.Add("UserPosition", UserPosition);
+                usr.Add("UserRole", UserRole);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
             return resp;
 
+        }
+        public Boolean deactivateUser(String userId, String deactivate)
+        {
+            OleDbCommand cmd = new OleDbCommand(" update [USER] set Is_Deactivated='" + deactivate + "' where UserID = " + userId + " ", Program.con);
+            int count = cmd.ExecuteNonQuery();
+            if (count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

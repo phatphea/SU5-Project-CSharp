@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radUser = new System.Windows.Forms.RadioButton();
-            this.radSubAdmin = new System.Windows.Forms.RadioButton();
             this.radAdmin = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -55,11 +49,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPw = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.radSubAdmin = new System.Windows.Forms.RadioButton();
+            this.radUser = new System.Windows.Forms.RadioButton();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnToolAdd = new System.Windows.Forms.ToolStripButton();
             this.btnToolEdit = new System.Windows.Forms.ToolStripButton();
             this.btnToolDelete = new System.Windows.Forms.ToolStripButton();
+            this.btnToolDeactivate = new System.Windows.Forms.ToolStripButton();
             this.btnToolSearch = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolImport = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +85,8 @@
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column5});
+            this.Column5,
+            this.Column6});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 292);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
@@ -94,46 +98,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1045, 326);
             this.dataGridView1.TabIndex = 5;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "User ID";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "User Name";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Password";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Position";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 125;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Role";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 125;
             // 
             // panel1
             // 
@@ -161,32 +125,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(460, 226);
             this.panel2.TabIndex = 17;
-            // 
-            // radUser
-            // 
-            this.radUser.AutoSize = true;
-            this.radUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radUser.Location = new System.Drawing.Point(330, 138);
-            this.radUser.Name = "radUser";
-            this.radUser.Size = new System.Drawing.Size(56, 20);
-            this.radUser.TabIndex = 16;
-            this.radUser.TabStop = true;
-            this.radUser.Text = "User";
-            this.radUser.UseVisualStyleBackColor = true;
-            this.radUser.CheckedChanged += new System.EventHandler(this.radUser_CheckedChanged);
-            // 
-            // radSubAdmin
-            // 
-            this.radSubAdmin.AutoSize = true;
-            this.radSubAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radSubAdmin.Location = new System.Drawing.Point(211, 138);
-            this.radSubAdmin.Name = "radSubAdmin";
-            this.radSubAdmin.Size = new System.Drawing.Size(92, 20);
-            this.radSubAdmin.TabIndex = 15;
-            this.radSubAdmin.TabStop = true;
-            this.radSubAdmin.Text = "Sub Admin";
-            this.radSubAdmin.UseVisualStyleBackColor = true;
-            this.radSubAdmin.CheckedChanged += new System.EventHandler(this.radSubAdmin_CheckedChanged);
             // 
             // radAdmin
             // 
@@ -365,6 +303,7 @@
             this.btnToolAdd,
             this.btnToolEdit,
             this.btnToolDelete,
+            this.btnToolDeactivate,
             this.btnToolSearch,
             this.toolStripSeparator1,
             this.toolStripSplitButton1});
@@ -375,6 +314,88 @@
             this.toolStrip1.Size = new System.Drawing.Size(1045, 37);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // radSubAdmin
+            // 
+            this.radSubAdmin.AutoSize = true;
+            this.radSubAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radSubAdmin.Location = new System.Drawing.Point(211, 138);
+            this.radSubAdmin.Name = "radSubAdmin";
+            this.radSubAdmin.Size = new System.Drawing.Size(92, 20);
+            this.radSubAdmin.TabIndex = 15;
+            this.radSubAdmin.TabStop = true;
+            this.radSubAdmin.Text = "Sub Admin";
+            this.radSubAdmin.UseVisualStyleBackColor = true;
+            this.radSubAdmin.CheckedChanged += new System.EventHandler(this.radSubAdmin_CheckedChanged);
+            // 
+            // radUser
+            // 
+            this.radUser.AutoSize = true;
+            this.radUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radUser.Location = new System.Drawing.Point(330, 138);
+            this.radUser.Name = "radUser";
+            this.radUser.Size = new System.Drawing.Size(56, 20);
+            this.radUser.TabIndex = 16;
+            this.radUser.TabStop = true;
+            this.radUser.Text = "User";
+            this.radUser.UseVisualStyleBackColor = true;
+            this.radUser.CheckedChanged += new System.EventHandler(this.radUser_CheckedChanged);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "User ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "User Name";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Password";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Position";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 125;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Role";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 125;
+            // 
+            // Column6
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column6.HeaderText = "Deactivated";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 125;
             // 
             // btnToolAdd
             // 
@@ -409,6 +430,17 @@
             this.btnToolDelete.Text = "  Delete";
             this.btnToolDelete.Click += new System.EventHandler(this.btnToolDelete_Click);
             // 
+            // btnToolDeactivate
+            // 
+            this.btnToolDeactivate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnToolDeactivate.Image = global::Purchasing_Management_System.Properties.Resources.ban__1_;
+            this.btnToolDeactivate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnToolDeactivate.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.btnToolDeactivate.Name = "btnToolDeactivate";
+            this.btnToolDeactivate.Size = new System.Drawing.Size(112, 24);
+            this.btnToolDeactivate.Text = "  Deactivate";
+            this.btnToolDeactivate.Click += new System.EventHandler(this.btnToolDeactivate_Click);
+            // 
             // btnToolSearch
             // 
             this.btnToolSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -419,11 +451,6 @@
             this.btnToolSearch.Size = new System.Drawing.Size(85, 24);
             this.btnToolSearch.Text = "  Search";
             this.btnToolSearch.Click += new System.EventHandler(this.btnToolSearch_Click_1);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripSplitButton1
             // 
@@ -506,13 +533,15 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.RadioButton radAdmin;
         private System.Windows.Forms.RadioButton radUser;
         private System.Windows.Forms.RadioButton radSubAdmin;
-        private System.Windows.Forms.RadioButton radAdmin;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.ToolStripButton btnToolDeactivate;
     }
 }

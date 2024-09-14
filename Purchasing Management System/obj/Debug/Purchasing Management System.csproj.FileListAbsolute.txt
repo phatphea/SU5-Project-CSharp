@@ -14,3 +14,8 @@ D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Deb
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.SearchFrm.resources
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.DatagridviewVendorFrm.resources
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.VendorManagementFrm.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\bin\Debug\Interop.WMPLib.dll
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\bin\Debug\AxInterop.WMPLib.dll
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Interop.WMPLib.dll
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\AxInterop.WMPLib.dll
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing Management System.csproj.ResolveComReference.cache
