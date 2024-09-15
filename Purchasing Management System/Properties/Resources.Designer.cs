@@ -73,6 +73,16 @@ namespace Purchasing_Management_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap angle_double_small_left {
+            get {
+                object obj = ResourceManager.GetObject("angle-double-small-left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_small_left {
             get {
                 object obj = ResourceManager.GetObject("arrow-small-left", resourceCulture);
@@ -126,6 +136,16 @@ namespace Purchasing_Management_System.Properties {
         internal static System.Drawing.Bitmap arrow_small_left1 {
             get {
                 object obj = ResourceManager.GetObject("arrow-small-left1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap arrow_small_right {
+            get {
+                object obj = ResourceManager.GetObject("arrow-small-right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -10,11 +10,11 @@ namespace Purchasing_Management_System.dao
 {
     internal class VendorMgtDao
     {
-        public List<Dictionary<string, object>> LoadAllVendors ()
+        public List<Dictionary<string, object>> LoadAllVendors()
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable  from [Vendor] order by Vendor_Id asc", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable from [Vendor] order by Vendor_Id asc", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -45,6 +45,8 @@ namespace Purchasing_Management_System.dao
             return resp;
 
         }
+
+
         public Boolean isDuplicate(String venPhone)
         {
 
@@ -169,6 +171,12 @@ namespace Purchasing_Management_System.dao
             dr.Close();
             return resp;
 
+        }
+        public long countRowsVendor()
+        {
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor]", Program.con);
+            int count = (int)cmd.ExecuteScalar();
+            return count;
         }
     }
 }

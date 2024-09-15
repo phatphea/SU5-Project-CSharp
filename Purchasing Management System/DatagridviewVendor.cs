@@ -1,8 +1,10 @@
 ﻿using Purchasing_Management_System.dao;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,11 +25,17 @@ namespace Purchasing_Management_System
         
         public void DatagridviewVendorFrm_Load(object sender, EventArgs e)
         {
+
             dataGridView1.Rows.Clear();
             List<Dictionary<string, object>> data = dao.LoadAllVendors();
             foreach (Dictionary<string, object> usr in data)
             {
                 dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"]);
+            }
+            long countRows=dao.countRowsVendor();
+            if (countRows > 0)
+            {
+                lblTotalRows.Text = countRows.ToString();
             }
         }
         public void refreshVendorView()
@@ -153,5 +161,6 @@ namespace Purchasing_Management_System
             } 
 
         }
+       
     }
 }
