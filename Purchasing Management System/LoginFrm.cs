@@ -43,9 +43,23 @@ namespace Purchasing_Management_System
             int count = Convert.ToInt32(cmd.ExecuteScalar());
             if (count > 0)
             {
-                Program.userLogin = txtUser.Text;
-                System.IO.File.WriteAllText("usr.txt", txtUser.Text); //write username input to file .txt
-                this.Close();
+                //go to select Deactivated column
+                // if No => go to system
+                // else yes => message box (This user deactivated)
+                cmd.CommandText = "select Is_Deactivated from [USER] where UserName='" + txtUser.Text + "' and UserPassword='" + txtPw.Text + "' ";
+                string deac = Convert.ToString(cmd.ExecuteScalar());
+                if (deac == "No")
+                {
+                    Program.userLogin = txtUser.Text;
+                    System.IO.File.WriteAllText("usr.txt", txtUser.Text); //write username input to file .txt
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("This user is deactivated", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+                
             }
             else
             {

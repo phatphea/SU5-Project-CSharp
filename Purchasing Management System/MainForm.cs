@@ -84,6 +84,7 @@ namespace Purchasing_Management_System
         }
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //splitContainer1.Panel2.Controls.Clear(); // to remove view on splitContainer.panel2 when click logout
             MainForm_Load(null, null);
         }
 
