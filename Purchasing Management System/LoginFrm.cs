@@ -58,8 +58,6 @@ namespace Purchasing_Management_System
                 {
                     MessageBox.Show("This user is deactivated", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                
-                
             }
             else
             {
