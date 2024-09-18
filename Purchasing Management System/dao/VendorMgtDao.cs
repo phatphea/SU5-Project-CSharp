@@ -14,7 +14,7 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable from [Vendor] order by Vendor_Id asc", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable, Is_Deactivated from [Vendor] order by Vendor_Id asc", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -28,6 +28,7 @@ namespace Purchasing_Management_System.dao
                 string Phone_Number = dr["Phone_Number"].ToString();
                 string Vattin_No = dr["Vattin_No"].ToString();
                 string Is_Taxable = dr["Is_Taxable"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("Vendor_Id", Vendor_Id);
                 usr.Add("Vendor_No", Vendor_No);
@@ -39,6 +40,7 @@ namespace Purchasing_Management_System.dao
                 usr.Add("Phone_Number", Phone_Number);
                 usr.Add("Vattin_No", Vattin_No);
                 usr.Add("Is_Taxable", Is_Taxable);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
@@ -106,7 +108,7 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable from [Vendor] where Vendor_Id=" + id + " order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Id=" + id + " order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -120,6 +122,7 @@ namespace Purchasing_Management_System.dao
                 string Phone_Number = dr["Phone_Number"].ToString();
                 string Vattin_No = dr["Vattin_No"].ToString();
                 string Is_Taxable = dr["Is_Taxable"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("Vendor_Id", Vendor_Id);
                 usr.Add("Vendor_No", Vendor_No);
@@ -131,6 +134,7 @@ namespace Purchasing_Management_System.dao
                 usr.Add("Phone_Number", Phone_Number);
                 usr.Add("Vattin_No", Vattin_No);
                 usr.Add("Is_Taxable", Is_Taxable);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
@@ -141,7 +145,7 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable from [Vendor] where Vendor_Name Like '%" + venName + "%' order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Name Like '%" + venName + "%' order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -155,6 +159,7 @@ namespace Purchasing_Management_System.dao
                 string Phone_Number = dr["Phone_Number"].ToString();
                 string Vattin_No = dr["Vattin_No"].ToString();
                 string Is_Taxable = dr["Is_Taxable"].ToString();
+                string Is_Deactivated = dr["Is_Deactivated"].ToString();
                 Dictionary<string, object> usr = new Dictionary<string, object>();
                 usr.Add("Vendor_Id", Vendor_Id);
                 usr.Add("Vendor_No", Vendor_No);
@@ -166,6 +171,7 @@ namespace Purchasing_Management_System.dao
                 usr.Add("Phone_Number", Phone_Number);
                 usr.Add("Vattin_No", Vattin_No);
                 usr.Add("Is_Taxable", Is_Taxable);
+                usr.Add("Is_Deactivated", Is_Deactivated);
                 resp.Add(usr);
             }
             dr.Close();
@@ -177,6 +183,16 @@ namespace Purchasing_Management_System.dao
             OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor]", Program.con);
             int count = (int)cmd.ExecuteScalar();
             return count;
+        }
+        public Boolean deactivateUser(String venId, String deactivate)
+        {
+            OleDbCommand cmd = new OleDbCommand(" update [Vendor] set Is_Deactivated='" + deactivate + "' where Vendor_Id = " + venId + " ", Program.con);
+            int count = cmd.ExecuteNonQuery();
+            if (count > 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

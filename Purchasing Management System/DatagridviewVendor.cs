@@ -30,7 +30,7 @@ namespace Purchasing_Management_System
             List<Dictionary<string, object>> data = dao.LoadAllVendors();
             foreach (Dictionary<string, object> usr in data)
             {
-                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"]);
+                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
             }
             long countRows=dao.countRowsVendor();
             if (countRows > 0)
@@ -139,7 +139,7 @@ namespace Purchasing_Management_System
                             List<Dictionary<string, object>> searchID = dao.searchVendorByID(search.txtSearchValue.Text);
                             foreach (Dictionary<string, object> usr in searchID)
                             {
-                                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"]);
+                                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
                             }
                             break;
 
@@ -147,7 +147,7 @@ namespace Purchasing_Management_System
                             List<Dictionary<string, object>> searchName = dao.searchVendorsByName(search.txtSearchValue.Text);
                             foreach (Dictionary<string, object> usr in searchName)
                             {
-                                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"]);
+                                dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
                             }
                             break;
                     }
@@ -161,6 +161,49 @@ namespace Purchasing_Management_System
             } 
 
         }
-       
+
+        private void btnToolDeactivate_Click(object sender, EventArgs e)
+        {
+            //validate if no record for select
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                return; //if not return, code below will execute
+            }
+
+            //validate when user click button Edit
+            DataGridViewRow r = dataGridView1.SelectedRows[0];
+
+            string id = r.Cells[0].Value.ToString();
+            string deactivate = r.Cells[10].Value.ToString();
+
+            if (deactivate == "No")
+            {
+                deactivate = "Yes";
+                DialogResult rst = MessageBox.Show("Are you sure to Deactivate this user?", "Deactivate", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rst == DialogResult.Yes)
+                {
+                    //1st update to db
+                    //2nd update to datagridview
+                    if (dao.deactivateUser(id, deactivate))
+                    {
+                        r.Cells[10].Value = deactivate;
+                    }
+                }
+            }
+            else
+            {
+                deactivate = "No";
+                DialogResult rst = MessageBox.Show("Are you sure to Activate this user?", "Deactivate", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (rst == DialogResult.Yes)
+                {
+                    //1st update to db
+                    //2nd update to datagridview
+                    if (dao.deactivateUser(id, deactivate))
+                    {
+                        r.Cells[10].Value = deactivate;
+                    }
+                }
+            }
+        }
     }
 }
