@@ -268,7 +268,7 @@ namespace Purchasing_Management_System
             else
             {
                 deactivate = "No";
-                DialogResult rst = MessageBox.Show("Are you sure to Activate this user?", "Deactivate", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult rst = MessageBox.Show("Are you sure to Activate this user?", "Activate", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (rst == DialogResult.Yes)
                 {
                     //1st update to db

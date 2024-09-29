@@ -10,11 +10,11 @@ namespace Purchasing_Management_System.dao
 {
     internal class VendorMgtDao
     {
-        public List<Dictionary<string, object>> LoadAllVendors()
+        public List<Dictionary<string, object>> LoadAllVendors(String ActiveOrInactiveVendor)
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable, Is_Deactivated from [Vendor] order by Vendor_Id asc", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable, Is_Deactivated from [Vendor] where Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -104,11 +104,11 @@ namespace Purchasing_Management_System.dao
             }
             return false;
         }
-        public List<Dictionary<string, object>> searchVendorByID(String id)
+        public List<Dictionary<string, object>> searchVendorByID(String id, String ActiveOrInactiveVendor)
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Id=" + id + " order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Id=" + id + " and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -141,11 +141,11 @@ namespace Purchasing_Management_System.dao
             return resp;
 
         }
-        public List<Dictionary<string, object>> searchVendorsByName(String venName)
+        public List<Dictionary<string, object>> searchVendorsByName(String venName, String ActiveOrInactiveVendor)
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Name Like '%" + venName + "%' order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Name Like '%" + venName + "%' and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -178,9 +178,15 @@ namespace Purchasing_Management_System.dao
             return resp;
 
         }
-        public long countRowsVendor()
+        public long countRowsVendor(String ActiveOrInactiveVendor, String name)
         {
-            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor]", Program.con);
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where Is_Deactivated='"+ActiveOrInactiveVendor+ "' and vendor_name LIKE '%" + name + "%'; ", Program.con);
+            int count = (int)cmd.ExecuteScalar();
+            return count;
+        }
+        public long countRowsVendorById(String id)
+        {
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where vendor_id ="+id+"; ", Program.con);
             int count = (int)cmd.ExecuteScalar();
             return count;
         }

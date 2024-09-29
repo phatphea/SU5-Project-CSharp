@@ -52,5 +52,7 @@ namespace Purchasing_Management_System
                 txtSearchValue.Focus();
             }
         }
+
+        public string activeOrInactive { get; set; }
     }
 }

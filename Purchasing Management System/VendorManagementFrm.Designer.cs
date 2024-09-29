@@ -66,12 +66,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cboIsTax = new System.Windows.Forms.ComboBox();
             this.txtTaxNo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.cboIsTax = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -512,6 +512,20 @@
             this.panel8.Size = new System.Drawing.Size(520, 198);
             this.panel8.TabIndex = 15;
             // 
+            // cboIsTax
+            // 
+            this.cboIsTax.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboIsTax.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboIsTax.FormattingEnabled = true;
+            this.cboIsTax.Items.AddRange(new object[] {
+            "Yes",
+            "No"});
+            this.cboIsTax.Location = new System.Drawing.Point(208, 81);
+            this.cboIsTax.Name = "cboIsTax";
+            this.cboIsTax.Size = new System.Drawing.Size(277, 28);
+            this.cboIsTax.TabIndex = 23;
+            this.cboIsTax.SelectedIndexChanged += new System.EventHandler(this.cboIsTax_SelectedIndexChanged);
+            // 
             // txtTaxNo
             // 
             this.txtTaxNo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -566,24 +580,11 @@
             this.panel9.Size = new System.Drawing.Size(486, 1);
             this.panel9.TabIndex = 13;
             // 
-            // cboIsTax
-            // 
-            this.cboIsTax.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboIsTax.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboIsTax.FormattingEnabled = true;
-            this.cboIsTax.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
-            this.cboIsTax.Location = new System.Drawing.Point(208, 81);
-            this.cboIsTax.Name = "cboIsTax";
-            this.cboIsTax.Size = new System.Drawing.Size(277, 28);
-            this.cboIsTax.TabIndex = 23;
-            this.cboIsTax.SelectedIndexChanged += new System.EventHandler(this.cboIsTax_SelectedIndexChanged);
-            // 
             // VendorManagementFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1645, 688);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);

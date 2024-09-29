@@ -84,6 +84,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.splitter1);
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -118,6 +119,7 @@
             this.setingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.setingToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.setingToolStripMenuItem.Image = global::Purchasing_Management_System.Properties.Resources.settings;
+            this.setingToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.setingToolStripMenuItem.Name = "setingToolStripMenuItem";
             this.setingToolStripMenuItem.Size = new System.Drawing.Size(98, 27);
             this.setingToolStripMenuItem.Text = "Setting";
@@ -226,7 +228,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Gainsboro;
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -237,13 +239,14 @@
             this.splitContainer1.Panel1.Controls.Add(this.panel3);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
             this.splitContainer1.Panel1.Controls.Add(this.panel5);
+            this.splitContainer1.Panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
             this.splitContainer1.Size = new System.Drawing.Size(1272, 771);
-            this.splitContainer1.SplitterDistance = 185;
+            this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.TabIndex = 2;
             // 
             // label5
@@ -298,6 +301,8 @@
             // 
             // btnPayment
             // 
+            this.btnPayment.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPayment.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnPayment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPayment.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPayment.Image = global::Purchasing_Management_System.Properties.Resources.payroll_calendar;
@@ -323,6 +328,8 @@
             // 
             // btnGR
             // 
+            this.btnGR.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGR.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnGR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGR.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGR.Image = global::Purchasing_Management_System.Properties.Resources.requisition;
@@ -348,6 +355,8 @@
             // 
             // btnPO
             // 
+            this.btnPO.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPO.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnPO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPO.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPO.Image = global::Purchasing_Management_System.Properties.Resources.purchase_order;
@@ -373,6 +382,8 @@
             // 
             // btnRequest
             // 
+            this.btnRequest.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRequest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequest.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRequest.Image = global::Purchasing_Management_System.Properties.Resources.requisition;
@@ -398,6 +409,8 @@
             // 
             // btnVendor
             // 
+            this.btnVendor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVendor.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnVendor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVendor.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVendor.Image = global::Purchasing_Management_System.Properties.Resources.seller;
@@ -424,12 +437,14 @@
             // 
             // btnHome
             // 
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.WhiteSmoke;
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.Image = global::Purchasing_Management_System.Properties.Resources.house_chimney__1_;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.Location = new System.Drawing.Point(-15, -12);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(3, 2, 0, 2);
             this.btnHome.Name = "btnHome";
             this.btnHome.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnHome.Size = new System.Drawing.Size(484, 76);
