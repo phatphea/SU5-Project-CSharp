@@ -41,7 +41,6 @@ namespace Purchasing_Management_System
             { 
                 this.Close();
                 Program.mainFrm.nullValueForControlButton();
-
             }
         }
         
@@ -152,6 +151,7 @@ namespace Purchasing_Management_System
 
         private void btnSaveCloses_Click(object sender, EventArgs e)
         {
+            txtIsTax.Text = cboIsTax.Text;
             //validate data before save
             if (cmd.isEmpty(txtVenName, txtVenClass, txtVenAddress, txtVenMobile, txtIsTax) == true) { return; }; //validate if empty
 

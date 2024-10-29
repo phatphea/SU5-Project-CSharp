@@ -35,7 +35,7 @@ namespace Purchasing_Management_System
             {
                 dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
             }
-            long countRows = dao.countRowsVendor("No",""); //No is Active Vendor
+            long countRows = dao.countRowsVendorByActiveOrInactive("No"); //No is Active Vendor
             if (countRows > 0)
             {
                 lblTotalRows.Text = countRows.ToString();
@@ -111,9 +111,18 @@ namespace Purchasing_Management_System
                 //1st delete from table in db
                 //2nd if success delete form db then delete form datagridview
                 DataGridViewRow dr = dataGridView1.SelectedRows[0];
-                if (dao.deleteVendor(dr.Cells[0].Value.ToString()) == true)
+                try //validate when category was used for created product
                 {
-                    dataGridView1.Rows.Remove(dr);
+                    if (dao.deleteVendor(dr.Cells[0].Value.ToString()) == true)
+                    {
+                        dataGridView1.Rows.Remove(dr);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Cannot delete this vendor! Because it already used, you can deactivate it.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    refreshVendorView();
+                    return;
                 }
             }
         }
@@ -122,100 +131,53 @@ namespace Purchasing_Management_System
         {
             SearchFrm search = new SearchFrm();
             search.cboSearchField.Items.Add("-- Show All --");
-            search.cboSearchField.Items.Add("Vendor ID");
+            search.cboSearchField.Items.Add("Vendor No.");
             search.cboSearchField.Items.Add("Vendor Name");
             search.cboSearchField.SelectedIndex = 0;
 
-            search.activeOrInactive = cboActiveVendor.Text;
-
-            try //using try catch to prevent the error while user input the txtSearchValue of ID is string (Example abcd...)
+            if (search.ShowDialog() == DialogResult.OK)
             {
-                if (search.ShowDialog() == DialogResult.OK)
+                dataGridView1.Rows.Clear();
+                if (cboActiveVendor.SelectedItem != null)
                 {
-                    dataGridView1.Rows.Clear();
-                    
-                    if (search.activeOrInactive == "Active Vendor")
+                    string activeOrInactive = cboActiveVendor.SelectedItem.ToString();
+                    if(activeOrInactive=="Active Vendor")
                     {
-                        long countRows;
-                        switch (search.cboSearchField.Text)
-                        {
-                            case "-- Show All --":
-                                refreshVendorView();
-                                break;
-
-                            case "Vendor ID":
-                                List<Dictionary<string, object>> searchID = dao.searchVendorByID(search.txtSearchValue.Text, "No");
-                                foreach (Dictionary<string, object> usr in searchID)
-                                {
-                                    dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
-                                    countRows = dao.countRowsVendorById(search.txtSearchValue.Text);
-                                    if (countRows > 0)
-                                    {
-                                        lblTotalRows.Text = countRows.ToString();
-                                    }
-                                }
-                                break;
-
-                            case "Vendor Name":
-                                List<Dictionary<string, object>> searchName = dao.searchVendorsByName(search.txtSearchValue.Text, "No");
-                                foreach (Dictionary<string, object> usr in searchName)
-                                {
-                                    dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
-                                }
-                                countRows = dao.countRowsVendor("No", search.txtSearchValue.Text);
-                                if (countRows > 0)
-                                {
-                                    lblTotalRows.Text = countRows.ToString();
-                                }
-                                break;   
-                        }
-                        
+                        activeOrInactive = "No";
                     }
-                    else
+                    else { activeOrInactive = "Yes"; }
+                    if (search.cboSearchField.SelectedItem != null)
                     {
+                        List<Dictionary<string, object>> data;
                         long countRows;
-                        switch (search.cboSearchField.Text)
+                        string searchField = search.cboSearchField.SelectedItem.ToString();
+                        if (searchField== "-- Show All --")
                         {
-                            case "-- Show All --":
-                                refreshVendorView();
-                                break;
-
-                            case "Vendor ID":
-                                List<Dictionary<string, object>> searchID = dao.searchVendorByID(search.txtSearchValue.Text, "Yes");
-                                foreach (Dictionary<string, object> usr in searchID)
-                                {
-                                    dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
-                                }
-                                countRows = dao.countRowsVendorById(search.txtSearchValue.Text);
-                                if (countRows > 0)
-                                {
-                                    lblTotalRows.Text = countRows.ToString();
-                                }
-                                break;
-
-                            case "Vendor Name":
-                                List<Dictionary<string, object>> searchName = dao.searchVendorsByName(search.txtSearchValue.Text, "Yes");
-                                foreach (Dictionary<string, object> usr in searchName)
-                                {
-                                    dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
-                                }
-                                countRows = dao.countRowsVendor("No", search.txtSearchValue.Text);
-                                if (countRows > 0)
-                                {
-                                    lblTotalRows.Text = countRows.ToString();
-                                }
-                                break;
+                            data = dao.LoadAllVendors(activeOrInactive);
+                            countRows = dao.countRowsVendorByActiveOrInactive(activeOrInactive);
                         }
+                        else if (searchField == "Vendor No.")
+                        {
+                            data = dao.searchVendorByNo(search.txtSearchValue.Text, activeOrInactive);
+                            countRows = dao.countRowsVendorByNo(search.txtSearchValue.Text, activeOrInactive);
+                        }
+                        else
+                        {
+                            data = dao.searchVendorsByName(search.txtSearchValue.Text, activeOrInactive);
+                            countRows = dao.countRowsVendorByName(search.txtSearchValue.Text, activeOrInactive);
+                        }
+                        foreach (Dictionary<string, object> usr in data)
+                        {
+                            dataGridView1.Rows.Add(usr["Vendor_Id"], usr["Vendor_No"], usr["Vendor_Name"], usr["Vendor_NameKH"], usr["Vendor_Class"], usr["Address"], usr["Email"], usr["Phone_Number"], usr["Vattin_No"], usr["Is_Taxable"], usr["Is_Deactivated"]);
+                        }
+                        if (countRows > 0)
+                        {
+                            lblTotalRows.Text = countRows.ToString();
+                        }
+                        else { lblTotalRows.Text = "0"; }
                     }
                 }
             }
-            catch
-            {
-                MessageBox.Show("Invalid Inputted!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                refreshVendorView();
-                return;
-            }
-
         }
 
         private void btnToolDeactivate_Click(object sender, EventArgs e)
@@ -241,7 +203,10 @@ namespace Purchasing_Management_System
                     //2nd update to datagridview
                     if (dao.deactivateUser(id, deactivated))
                     {
-                        r.Cells[10].Value = deactivated;
+                        //r.Cells[10].Value = deactivated;
+                        dataGridView1.Rows.Remove(r);
+                        int editRow = Convert.ToInt32(lblTotalRows.Text) - 1;
+                        lblTotalRows.Text = editRow.ToString();
                     }
                 }
             }
@@ -303,7 +268,10 @@ namespace Purchasing_Management_System
                     //2nd update to datagridview
                     if (dao.deactivateUser(id, deactivated))
                     {
-                        r.Cells[10].Value = deactivated;
+                        //r.Cells[10].Value = deactivated;
+                        dataGridView1.Rows.Remove(r);
+                        int editRow = Convert.ToInt32(lblTotalRows.Text) - 1;
+                        lblTotalRows.Text = editRow.ToString();
                     }
                 }
             }
@@ -315,18 +283,20 @@ namespace Purchasing_Management_System
 
         private void cboActiveVendor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cboActiveVendor.SelectedItem = Color.White;
+
             dataGridView1.Rows.Clear();
             List<Dictionary<string, object>> data;
             long countRows;
             if (cboActiveVendor.SelectedIndex == 0)
             {
                 data = dao.LoadAllVendors("No"); //No is Active Vendor
-                countRows = dao.countRowsVendor("No", ""); //No is Active Vendor
+                countRows = dao.countRowsVendorByActiveOrInactive("No"); //No is Active Vendor
             }
             else
             {
                 data = dao.LoadAllVendors("Yes"); //Yes is Inactive Vendor
-                countRows = dao.countRowsVendor("Yes", ""); //No is Active Vendor
+                countRows = dao.countRowsVendorByActiveOrInactive("Yes"); //No is Active Vendor
             }
             foreach (Dictionary<string, object> usr in data)
             {
@@ -337,6 +307,7 @@ namespace Purchasing_Management_System
             {
                 lblTotalRows.Text = countRows.ToString();
             }
+            else { lblTotalRows.Text = "0"; }
         }
     }
 }

@@ -77,6 +77,5 @@ namespace Purchasing_Management_System.Common
             return false;
             
         }
-
     }
 }

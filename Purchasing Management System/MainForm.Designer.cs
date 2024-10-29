@@ -97,6 +97,7 @@
             this.menuStripTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStripTop.BackColor = System.Drawing.Color.Transparent;
             this.menuStripTop.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStripTop.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStripTop.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTop.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setingToolStripMenuItem,
@@ -104,21 +105,22 @@
             this.aboutUsToolStripMenuItem,
             this.logoutToolStripMenuItem,
             this.userNameToolStripMenuItem});
-            this.menuStripTop.Location = new System.Drawing.Point(756, 10);
+            this.menuStripTop.Location = new System.Drawing.Point(751, 10);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStripTop.Size = new System.Drawing.Size(507, 31);
+            this.menuStripTop.Size = new System.Drawing.Size(512, 31);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStrip2";
             // 
             // setingToolStripMenuItem
             // 
+            this.setingToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.setingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManagementToolStripMenuItem,
             this.groupManagementToolStripMenuItem});
             this.setingToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.setingToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.setingToolStripMenuItem.Image = global::Purchasing_Management_System.Properties.Resources.settings;
+            this.setingToolStripMenuItem.Image = global::Purchasing_Management_System.Properties.Resources.settings__2_;
             this.setingToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.setingToolStripMenuItem.Name = "setingToolStripMenuItem";
             this.setingToolStripMenuItem.Size = new System.Drawing.Size(98, 27);
@@ -127,15 +129,16 @@
             // userManagementToolStripMenuItem
             // 
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(249, 28);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(302, 28);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
             // groupManagementToolStripMenuItem
             // 
             this.groupManagementToolStripMenuItem.Name = "groupManagementToolStripMenuItem";
-            this.groupManagementToolStripMenuItem.Size = new System.Drawing.Size(249, 28);
-            this.groupManagementToolStripMenuItem.Text = "Group Management";
+            this.groupManagementToolStripMenuItem.Size = new System.Drawing.Size(302, 28);
+            this.groupManagementToolStripMenuItem.Text = "Business Unit Management";
+            this.groupManagementToolStripMenuItem.Click += new System.EventHandler(this.groupManagementToolStripMenuItem_Click);
             // 
             // dataToolStripMenuItem
             // 
@@ -146,20 +149,22 @@
             this.dataToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.dataToolStripMenuItem.Image = global::Purchasing_Management_System.Properties.Resources.analitycs;
             this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(80, 27);
-            this.dataToolStripMenuItem.Text = "Data";
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(85, 27);
+            this.dataToolStripMenuItem.Text = " Data";
             // 
             // categoryInformationToolStripMenuItem
             // 
             this.categoryInformationToolStripMenuItem.Name = "categoryInformationToolStripMenuItem";
             this.categoryInformationToolStripMenuItem.Size = new System.Drawing.Size(258, 28);
             this.categoryInformationToolStripMenuItem.Text = "Category Information";
+            this.categoryInformationToolStripMenuItem.Click += new System.EventHandler(this.categoryInformationToolStripMenuItem_Click);
             // 
             // productInformationToolStripMenuItem
             // 
             this.productInformationToolStripMenuItem.Name = "productInformationToolStripMenuItem";
             this.productInformationToolStripMenuItem.Size = new System.Drawing.Size(258, 28);
             this.productInformationToolStripMenuItem.Text = "Product Information";
+            this.productInformationToolStripMenuItem.Click += new System.EventHandler(this.productInformationToolStripMenuItem_Click);
             // 
             // aboutUsToolStripMenuItem
             // 
@@ -206,9 +211,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(55, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(205, 23);
+            this.label1.Size = new System.Drawing.Size(271, 23);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Purchasing System 1.0.0";
+            this.label1.Text = "Purchasing Management System";
             // 
             // splitter1
             // 
@@ -394,9 +399,10 @@
             this.btnRequest.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
             this.btnRequest.Size = new System.Drawing.Size(484, 76);
             this.btnRequest.TabIndex = 5;
-            this.btnRequest.Text = "          Acquisition";
+            this.btnRequest.Text = "          Acquisition Request";
             this.btnRequest.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRequest.UseVisualStyleBackColor = true;
+            this.btnRequest.Click += new System.EventHandler(this.btnRequest_Click);
             // 
             // panel2
             // 

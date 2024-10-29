@@ -48,7 +48,6 @@ namespace Purchasing_Management_System.dao
 
         }
 
-
         public Boolean isDuplicate(String venPhone)
         {
 
@@ -90,7 +89,7 @@ namespace Purchasing_Management_System.dao
 
         public void updateVendorNo(String venId)
         {
-            OleDbCommand cmd = new OleDbCommand(" UPDATE [Vendor] SET Vendor_No = \"VENDOR \" & Format(Vendor_Id, \"000\") WHERE Vendor_Id = " + venId + " ", Program.con);
+            OleDbCommand cmd = new OleDbCommand(" UPDATE [Vendor] SET Vendor_No = \"VENDOR \" & Format(Vendor_Id, \"00000\") WHERE Vendor_Id = " + venId + " ", Program.con);
             cmd.ExecuteNonQuery();
         }
 
@@ -104,11 +103,11 @@ namespace Purchasing_Management_System.dao
             }
             return false;
         }
-        public List<Dictionary<string, object>> searchVendorByID(String id, String ActiveOrInactiveVendor)
+        public List<Dictionary<string, object>> searchVendorByNo(String venNo, String ActiveOrInactiveVendor)
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Id=" + id + " and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_No='" + venNo + "' and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -145,7 +144,7 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Name Like '%" + venName + "%' and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select Vendor_Id, Vendor_No, Vendor_Name, Vendor_NameKH, Vendor_Class, Address, Email, Phone_Number,Vattin_No,Is_Taxable,Is_Deactivated from [Vendor] where Vendor_Name Like '%"+venName+"%' and Is_Deactivated='"+ActiveOrInactiveVendor+"' order by Vendor_Id asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -178,15 +177,21 @@ namespace Purchasing_Management_System.dao
             return resp;
 
         }
-        public long countRowsVendor(String ActiveOrInactiveVendor, String name)
+        public long countRowsVendorByName(String venName, String ActiveOrInactiveVendor)
         {
-            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where Is_Deactivated='"+ActiveOrInactiveVendor+ "' and vendor_name LIKE '%" + name + "%'; ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where Is_Deactivated='"+ActiveOrInactiveVendor+ "' and vendor_name LIKE '%" + venName + "%'; ", Program.con);
             int count = (int)cmd.ExecuteScalar();
             return count;
         }
-        public long countRowsVendorById(String id)
+        public long countRowsVendorByNo(String venNo, String ActiveOrInactiveVendor)
         {
-            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where vendor_id ="+id+"; ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where Vendor_No ='" + venNo+ "' and Is_Deactivated='" + ActiveOrInactiveVendor+"' ", Program.con);
+            int count = (int)cmd.ExecuteScalar();
+            return count;
+        }
+        public long countRowsVendorByActiveOrInactive(String ActiveOrInactiveVendor)
+        {
+            OleDbCommand cmd = new OleDbCommand("Select count(*) from [Vendor] where Is_Deactivated='" + ActiveOrInactiveVendor+"' ", Program.con);
             int count = (int)cmd.ExecuteScalar();
             return count;
         }

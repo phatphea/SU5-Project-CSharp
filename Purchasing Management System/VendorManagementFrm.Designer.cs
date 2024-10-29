@@ -536,6 +536,7 @@
             this.txtTaxNo.Name = "txtTaxNo";
             this.txtTaxNo.Size = new System.Drawing.Size(277, 27);
             this.txtTaxNo.TabIndex = 22;
+            
             // 
             // label7
             // 
@@ -586,6 +587,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1645, 688);
+            this.ControlBox = false;
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel4);

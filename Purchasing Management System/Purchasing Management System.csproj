@@ -46,8 +46,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dao\ProductMgtDao.cs" />
+    <Compile Include="dao\RequestMgtDao.cs" />
+    <Compile Include="DatagridviewRequestDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatagridviewRequestDetails.Designer.cs">
+      <DependentUpon>DatagridviewRequestDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatagridviewRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatagridviewRequest.Designer.cs">
+      <DependentUpon>DatagridviewRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsManagementFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductsManagementFrm.Designer.cs">
+      <DependentUpon>ProductsManagementFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\ClsCommon.cs" />
+    <Compile Include="dao\BUMgtDao.cs" />
     <Compile Include="dao\UserMgtDao.cs" />
+    <Compile Include="dao\CategoryMgtDao.cs" />
     <Compile Include="dao\VendorMgtDao.cs" />
     <Compile Include="DatagridviewVendor.cs">
       <SubType>Form</SubType>
@@ -80,11 +102,29 @@
     <Compile Include="SearchFrm.Designer.cs">
       <DependentUpon>SearchFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CategoryManagementFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CategoryManagementFrm.Designer.cs">
+      <DependentUpon>CategoryManagementFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BUManagementFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BUManagementFrm.Designer.cs">
+      <DependentUpon>BUManagementFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserManagementFrm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UserManagementFrm.Designer.cs">
       <DependentUpon>UserManagementFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainRequestManagementFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainRequestManagementFrm.Designer.cs">
+      <DependentUpon>MainRequestManagementFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="VendorManagementFrm.cs">
       <SubType>Form</SubType>
@@ -92,6 +132,15 @@
     <Compile Include="VendorManagementFrm.Designer.cs">
       <DependentUpon>VendorManagementFrm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DatagridviewRequestDetails.resx">
+      <DependentUpon>DatagridviewRequestDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatagridviewRequest.resx">
+      <DependentUpon>DatagridviewRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductsManagementFrm.resx">
+      <DependentUpon>ProductsManagementFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DatagridviewVendor.resx">
       <DependentUpon>DatagridviewVendor.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,8 +158,17 @@
     <EmbeddedResource Include="SearchFrm.resx">
       <DependentUpon>SearchFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CategoryManagementFrm.resx">
+      <DependentUpon>CategoryManagementFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BUManagementFrm.resx">
+      <DependentUpon>BUManagementFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserManagementFrm.resx">
       <DependentUpon>UserManagementFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainRequestManagementFrm.resx">
+      <DependentUpon>MainRequestManagementFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VendorManagementFrm.resx">
       <DependentUpon>VendorManagementFrm.cs</DependentUpon>
@@ -272,6 +330,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\angle-down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
