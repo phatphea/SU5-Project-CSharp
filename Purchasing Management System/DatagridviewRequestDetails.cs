@@ -29,23 +29,7 @@ namespace Purchasing_Management_System
 
         public void DatagridviewRequestFrm_Load(object sender, EventArgs e)
         {
-            /*txtFilter.Text = "Filter by keyword";
-            txtFilter.ForeColor = SystemColors.GrayText;
-
-            cboActiveRequest.SelectedIndex = 0; // 0 is No*/
-
-            dataGridView1.Rows.Clear();
-            List<Dictionary<string, object>> data = dao.LoadAllRequest("No"); //No is Active Vendor
-            foreach (Dictionary<string, object> req in data)
-            {
-                dataGridView1.Rows.Add(req["BU"], req["MainReq_No"], req["Status"], req["BU"] /*BU set for column Request Type*/, Convert.ToDateTime(req["Created_Date"]), req["Shipping_Site"], Double.Parse(req["Total_Amount"].ToString()), req["Requested_By"] ,req["Is_Deactivated"]);
-            }
-
-            long countRows = dao.countRowsRequestByActiveOrInactive("No"); //No is Active Vendor
-            if (countRows > 0)
-            {
-                lblTotalRows.Text = countRows.ToString();
-            }
+            
 
         }
         public void refreshVendorView()
@@ -105,7 +89,7 @@ namespace Purchasing_Management_System
         private void btnDelete_Click(object sender, EventArgs e)
         {
             //validate if no record for select
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridViewDetail.SelectedRows.Count == 0)
             {
                 MessageBox.Show("No record for deleting!");
                 return; //if not return, code below will execute
@@ -116,12 +100,12 @@ namespace Purchasing_Management_System
                 //start delete
                 //1st delete from table in db
                 //2nd if success delete form db then delete form datagridview
-                DataGridViewRow dr = dataGridView1.SelectedRows[0];
+                DataGridViewRow dr = dataGridViewDetail.SelectedRows[0];
                 try //validate when category was used for created product
                 {
                     if (dao.deleteRequest(dr.Cells[1].Value.ToString()) == true)
                     {
-                        dataGridView1.Rows.Remove(dr);
+                        dataGridViewDetail.Rows.Remove(dr);
                     }
                 }
                 catch
@@ -188,13 +172,13 @@ namespace Purchasing_Management_System
         private void btnToolDeactivate_Click(object sender, EventArgs e)
         {
             //validate if no record for select
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridViewDetail.SelectedRows.Count == 0)
             {
                 return; //if not return, code below will execute
             }
 
             //validate when user click button Edit
-            DataGridViewRow r = dataGridView1.SelectedRows[0];
+            DataGridViewRow r = dataGridViewDetail.SelectedRows[0];
             string reqNo = r.Cells[1].Value.ToString();
             string deactivated = r.Cells[8].Value.ToString();
 
@@ -209,7 +193,7 @@ namespace Purchasing_Management_System
                     if (dao.deactivateRequest(reqNo, deactivated))
                     {
                         //r.Cells[10].Value = deactivated;
-                        dataGridView1.Rows.Remove(r);
+                        dataGridViewDetail.Rows.Remove(r);
                         int editRow = Convert.ToInt32(lblTotalRows.Text) - 1;
                         lblTotalRows.Text = editRow.ToString();
                     }
@@ -224,7 +208,7 @@ namespace Purchasing_Management_System
         //selectionChanged on row of datagridvie to validate button Deactivate and Activate
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count > 0)
+            /*if (dataGridView1.SelectedRows.Count > 0)
             {
                 var cellValue = dataGridView1.SelectedRows[0].Cells[8].Value;
 
@@ -247,19 +231,19 @@ namespace Purchasing_Management_System
                     // Handle the case where the cell value is null
                     return;
                 }
-            }
+            }*/
         }
 
         private void btnToolActivate_Click(object sender, EventArgs e)
         {
             //validate if no record for select
-            if (dataGridView1.SelectedRows.Count == 0)
+            if (dataGridViewDetail.SelectedRows.Count == 0)
             {
                 return; //if not return, code below will execute
             }
 
             //validate when user click button Edit
-            DataGridViewRow r = dataGridView1.SelectedRows[0];
+            DataGridViewRow r = dataGridViewDetail.SelectedRows[0];
             string reqNo = r.Cells[1].Value.ToString();
             string deactivated = r.Cells[8].Value.ToString();
 
@@ -274,7 +258,7 @@ namespace Purchasing_Management_System
                     if (dao.deactivateRequest(reqNo, deactivated))
                     {
                         //r.Cells[10].Value = deactivated;
-                        dataGridView1.Rows.Remove(r);
+                        dataGridViewDetail.Rows.Remove(r);
                         int editRow = Convert.ToInt32(lblTotalRows.Text) - 1;
                         lblTotalRows.Text = editRow.ToString();
                     }
@@ -329,7 +313,7 @@ namespace Purchasing_Management_System
         {
             int matchedRowCount = 0;
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridViewDetail.Rows)
             {
                 if (row.IsNewRow) continue; // Skip the new row
 
@@ -365,6 +349,11 @@ namespace Purchasing_Management_System
                 txtFilter.Text = "Filter by keyword";
                 txtFilter.ForeColor = SystemColors.GrayText;
             }   */
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

@@ -10,8 +10,9 @@ namespace Purchasing_Management_System
     internal static class Program
     {
         public static string[] controlButton;
-        public static string vendor_phoneNumber;
-        
+        public static string vendor_phoneNumber; //for validate before saveChange while updating record
+        public static string mainRequestNo;//for validate before saveChange while updating record
+
         public static MainForm mainFrm;
         public static string userLogin = "";
         public static OleDbConnection con = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=PurchasingManagementSystem_DB.mdb;Persist Security Info=False");

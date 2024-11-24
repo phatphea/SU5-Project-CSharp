@@ -230,11 +230,11 @@ namespace Purchasing_Management_System
                 myBtnSetting(btnRequest, null);
             }
         }
-      
-        private Button lastClickedButton = null; // set for last clicked button
+
+        public Button lastClickedButton = null; // set for last clicked button
 
         //method for changing button color
-        private void myBtnSetting(object sender, EventArgs e)
+        public void myBtnSetting(object sender, EventArgs e)
         {
             // Reset last clicked button
             if (lastClickedButton != null)
@@ -253,5 +253,6 @@ namespace Purchasing_Management_System
             }
 
         }
+
     }
 }

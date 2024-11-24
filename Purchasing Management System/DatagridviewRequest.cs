@@ -25,7 +25,7 @@ namespace Purchasing_Management_System
         }
 
         RequestMgtDao dao = new RequestMgtDao();
-
+        UserMgtDao usrDao = new UserMgtDao();
 
         public void DatagridviewRequestFrm_Load(object sender, EventArgs e)
         {
@@ -53,47 +53,77 @@ namespace Purchasing_Management_System
             DatagridviewRequestFrm_Load(null, null); //to refresh to the default venderView
         }
 
-        //public MainForm mfrm;
-
         private void btnAddNew_Click(object sender, EventArgs e)
         {
-            MainRequestManagementFrm mrfrm = new MainRequestManagementFrm();
-            mrfrm.TopLevel = false;
-            Program.mainFrm.splitContainer1.Panel2.Controls.Add(mrfrm);
-            mrfrm.BringToFront();
-            mrfrm.Show();
+            MainRequestManagementFrm frm = new MainRequestManagementFrm();
+            frm.TopLevel = false;
+            Program.mainFrm.splitContainer1.Panel2.Controls.Add(frm);
+            frm.BringToFront();
+            frm.Show();
 
-            mrfrm.saveStatus("Unsaved");
+            frm.LoadAllBU();
+            frm.saveStatus("Unsaved");
+            frm.cboRequestStatus.SelectedIndex = 0;
         }
 
         public void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*VendorManagementFrm vfrm = new VendorManagementFrm();
+            // Check if the double-clicked row is valid
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return; //Exit if the clicked cell is not in the valid row or column
+            }
 
-            vfrm.lblVendorName.Text = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            vfrm.txtVenId.Text = this.dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            vfrm.txtVenNo.Text = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            vfrm.txtVenName.Text = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            vfrm.txtVenNameKH.Text = this.dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            vfrm.txtVenClass.Text = this.dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            vfrm.txtVenAddress.Text = this.dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            vfrm.txtVenEmail.Text = this.dataGridView1.CurrentRow.Cells[6].Value.ToString();
-            vfrm.txtVenMobile.Text = this.dataGridView1.CurrentRow.Cells[7].Value.ToString();
-            vfrm.txtTaxNo.Text = this.dataGridView1.CurrentRow.Cells[8].Value.ToString();
-            vfrm.cboIsTax.Text = this.dataGridView1.CurrentRow.Cells[9].Value.ToString();
+            DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
 
-            Program.vendor_phoneNumber = this.dataGridView1.CurrentRow.Cells[7].Value.ToString(); //give value to program class in order to validate when saveChange
+            // Check if the row or the required cells are null
+            if (row == null || row.Cells[1].Value == null || row.Cells[8].Value == null)
+            { 
+                MessageBox.Show("The selected row contains null values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit the method if the row or required cells are null
+            }
 
-            vfrm.enableBox(false);
-            vfrm.btnSave.Enabled = false;
-            vfrm.saveStatus("Saved");
-            vfrm.btnSaveCloses.Enabled = false;
-            vfrm.TopLevel = false;
-            Program.mainFrm.splitContainer1.Panel2.Controls.Add(vfrm);
-            vfrm.BringToFront();
-            vfrm.Show();
+            MainRequestManagementFrm frm = new MainRequestManagementFrm();
 
-            Program.mainFrm.nullValueForControlButton();*/
+            string mainRequestNo = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            string activeOrInactive = this.dataGridView1.CurrentRow.Cells[8].Value.ToString();
+
+            frm.LoadAllBU();
+
+            List<Dictionary<string, object>> data = dao.LoadAllRequestByNo(mainRequestNo, activeOrInactive);
+            foreach (Dictionary<string, object> req in data)
+            {
+                frm.cboRequestStatus.Text = req["Status"].ToString();
+                frm.lblRequestNo.Text = req["MainReq_No"].ToString();
+                frm.cboRequestType.Text = req["BU"].ToString();
+                frm.dtCreatedDate.Text = req["Created_Date"].ToString();
+                frm.txtRequestDesc.Text = req["Req_Desc"].ToString();
+                frm.txtRequestedBy.Text = req["Requested_By"].ToString();
+                frm.txtEndorsedBy.Text = req["Endorsed_By"].ToString();
+                frm.txtApprovedBy.Text = req["Approved_By"].ToString();
+                frm.txtReason.Text = req["Reason"].ToString();
+                frm.cboShippingSite.Text = req["Shipping_Site"].ToString();
+                frm.txtAddress.Text = req["Shipping_Address"].ToString();
+                frm.txtTlAmtBeforeDiscount.Text = Convert.ToDecimal(req["Amount_BefDiscount"]).ToString("0.00");
+                frm.txtTotalDiscount.Text = Convert.ToDecimal(req["Discount"]).ToString("0.00");
+                frm.txtTotalBaseAmount.Text = Convert.ToDecimal(req["Base_Amount"]).ToString("0.00");
+                frm.txtTotalTax.Text = Convert.ToDecimal(req["Tax_Amount"]).ToString("0.00");
+                frm.txtTotalAmount.Text = Convert.ToDecimal(req["Total_Amount"]).ToString("0.00");
+            }
+
+            Program.mainRequestNo = this.dataGridView1.CurrentRow.Cells[1].Value.ToString(); //give value to program class in order to validate when saveChange
+
+            frm.enableBox(false);
+            frm.readOnlyBox(true);
+            frm.btnSave.Enabled = false;
+            frm.saveStatus("Saved");
+            frm.btnSaveCloses.Enabled = false;
+            frm.TopLevel = false;
+            Program.mainFrm.splitContainer1.Panel2.Controls.Add(frm);
+            frm.BringToFront();
+            frm.Show();
+
+            Program.mainFrm.nullValueForControlButton();
 
         }
 

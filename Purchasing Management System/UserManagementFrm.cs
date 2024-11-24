@@ -265,7 +265,7 @@ namespace Purchasing_Management_System
                             }
                             foreach (Dictionary<string, object> usr in loadUser)
                             {
-                                dataGridView1.Rows.Add(usr["uid"], usr["uname"], usr["upass"], usr["UserPosition"], usr["UserRole"], usr["BU_No"], usr["Is_Deactivated"]);
+                                dataGridView1.Rows.Add(usr["uid"], usr["uNo"], usr["uname"], usr["upass"], usr["UserPosition"], usr["UserRole"], usr["BU_No"], usr["Is_Deactivated"]);
                             }
 
                             if (countRows > 0)

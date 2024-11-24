@@ -62,21 +62,46 @@ namespace Purchasing_Management_System
 
         public void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Check if the double-clicked row is valid
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+            {
+                return; //Exit if the clicked cell is not in the valid row or column
+            }
+
+            DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+
+            // Check if the row or the required cells are null
+            if (row == null)
+            {
+                MessageBox.Show("The selected row contains null values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit the method if the row or required cells are null
+            }
+
+            // Check if any cell values in the row are null before accessing them
+            foreach (DataGridViewCell cell in row.Cells)
+            {   
+                if (cell.Value == null)
+                { 
+                    MessageBox.Show("The selected row contains null values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Exit the method if any required cells are null
+                }
+            }
+
             VendorManagementFrm vfrm = new VendorManagementFrm();
 
-            vfrm.lblVendorName.Text = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            vfrm.txtVenId.Text = this.dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            vfrm.txtVenNo.Text = this.dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            vfrm.txtVenName.Text = this.dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            vfrm.txtVenNameKH.Text = this.dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            vfrm.txtVenClass.Text = this.dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            vfrm.txtVenAddress.Text = this.dataGridView1.CurrentRow.Cells[5].Value.ToString();
-            vfrm.txtVenEmail.Text = this.dataGridView1.CurrentRow.Cells[6].Value.ToString();
-            vfrm.txtVenMobile.Text = this.dataGridView1.CurrentRow.Cells[7].Value.ToString();
-            vfrm.txtTaxNo.Text = this.dataGridView1.CurrentRow.Cells[8].Value.ToString();
-            vfrm.cboIsTax.Text = this.dataGridView1.CurrentRow.Cells[9].Value.ToString();
+            vfrm.lblVendorName.Text = row.Cells[2].Value.ToString();
+            vfrm.txtVenId.Text = row.Cells[0].Value.ToString();
+            vfrm.txtVenNo.Text = row.Cells[1].Value.ToString();
+            vfrm.txtVenName.Text = row.Cells[2].Value.ToString();
+            vfrm.txtVenNameKH.Text = row.Cells[3].Value.ToString();
+            vfrm.txtVenClass.Text = row.Cells[4].Value.ToString();
+            vfrm.txtVenAddress.Text = row.Cells[5].Value.ToString();
+            vfrm.txtVenEmail.Text = row.Cells[6].Value.ToString();
+            vfrm.txtVenMobile.Text = row.Cells[7].Value.ToString();
+            vfrm.txtTaxNo.Text = row.Cells[8].Value.ToString();
+            vfrm.cboIsTax.Text = row.Cells[9].Value.ToString();
 
-            Program.vendor_phoneNumber = this.dataGridView1.CurrentRow.Cells[7].Value.ToString(); //give value to program class in order to validate when saveChange
+            Program.vendor_phoneNumber = row.Cells[7].Value.ToString();//give value to program class in order to validate when saveChange
 
             vfrm.enableBox(false);
             vfrm.btnSave.Enabled = false;

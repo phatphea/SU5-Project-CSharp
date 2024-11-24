@@ -70,6 +70,7 @@
             this.btnBackPage = new System.Windows.Forms.Button();
             this.panelForDatagridviewVendor = new System.Windows.Forms.Panel();
             this.cboActiveVendor = new System.Windows.Forms.ComboBox();
+            this.btnReport = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -88,7 +89,8 @@
             this.btnToolDeactivate,
             this.btnToolActivate,
             this.btnSearch,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.btnReport});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -465,6 +467,16 @@
             this.cboActiveVendor.TabIndex = 0;
             this.cboActiveVendor.SelectedIndexChanged += new System.EventHandler(this.cboActiveVendor_SelectedIndexChanged);
             // 
+            // btnReport
+            // 
+            this.btnReport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.Image = global::Purchasing_Management_System.Properties.Resources.newspaper;
+            this.btnReport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnReport.Margin = new System.Windows.Forms.Padding(0, 1, 10, 2);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(111, 24);
+            this.btnReport.Text = " Run Report";
+            // 
             // DatagridviewVendorFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -524,5 +536,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.ToolStripButton btnReport;
     }
 }

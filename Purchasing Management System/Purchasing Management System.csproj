@@ -60,6 +60,12 @@
     <Compile Include="DatagridviewRequest.Designer.cs">
       <DependentUpon>DatagridviewRequest.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoadNameFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadNameFrm.Designer.cs">
+      <DependentUpon>LoadNameFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductsManagementFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DatagridviewRequest.resx">
       <DependentUpon>DatagridviewRequest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadNameFrm.resx">
+      <DependentUpon>LoadNameFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductsManagementFrm.resx">
       <DependentUpon>ProductsManagementFrm.cs</DependentUpon>
@@ -342,6 +351,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\newspaper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

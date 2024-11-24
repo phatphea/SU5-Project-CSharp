@@ -96,6 +96,7 @@
             // 
             this.menuStripTop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStripTop.BackColor = System.Drawing.Color.Transparent;
+            this.menuStripTop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.menuStripTop.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStripTop.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStripTop.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -105,10 +106,10 @@
             this.aboutUsToolStripMenuItem,
             this.logoutToolStripMenuItem,
             this.userNameToolStripMenuItem});
-            this.menuStripTop.Location = new System.Drawing.Point(751, 10);
+            this.menuStripTop.Location = new System.Drawing.Point(601, 10);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStripTop.Size = new System.Drawing.Size(512, 31);
+            this.menuStripTop.Size = new System.Drawing.Size(662, 31);
             this.menuStripTop.TabIndex = 1;
             this.menuStripTop.Text = "menuStrip2";
             // 

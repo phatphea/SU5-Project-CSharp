@@ -25,3 +25,4 @@ D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Deb
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.DatagridviewRequest.resources
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.MainRequestManagementFrm.resources
 D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.DatagridviewRequestDetails.resources
+D:\Year 2\C# 2\Purchasing Management System\Purchasing Management System\obj\Debug\Purchasing_Management_System.LoadNameFrm.resources
