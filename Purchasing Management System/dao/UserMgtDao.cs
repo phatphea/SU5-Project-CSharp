@@ -129,7 +129,7 @@ namespace Purchasing_Management_System.dao
         {
             List<Dictionary<string, object>> resp = new List<Dictionary<string, object>>();
             //logic get data from database tblUser
-            OleDbCommand cmd = new OleDbCommand("select UserID, User_No, UserName, UserPassword, UserPosition, UserRole, BU_No, Is_Deactivated from [USER] where UserName Like '%" + usrName + "%' and  Is_Deactivated='" + ActiveOrInactiveUser + "' and BU_No LIKE '%" + bu + "%' order by UserID asc ", Program.con);
+            OleDbCommand cmd = new OleDbCommand("select UserID, User_No, UserName, UserPassword, UserPosition, UserRole, BU_No, Is_Deactivated from [USER] where UserName Like '" + usrName + "%' and  Is_Deactivated='" + ActiveOrInactiveUser + "' and BU_No LIKE '%" + bu + "%' order by UserID asc ", Program.con);
             OleDbDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {

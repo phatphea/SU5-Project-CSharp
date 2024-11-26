@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static Purchasing_Management_System.LoadNameFrm;
 
 namespace Purchasing_Management_System
 {
@@ -418,10 +419,9 @@ namespace Purchasing_Management_System
                 isUpdatingTextBox = true; // Set flag to true to ignore TextChanged event
                 targetTextBox.Text = userName;
                 isUpdatingTextBox = false;// Reset flag after updating
-                frm.Visible = false;
             };
-            //frm.Show();
-            //frm.Visible = true;
+            frm.Show();
+            frm.Visible = true;
         }
 
         //Load user into list box in LoadNameFrm
@@ -464,14 +464,14 @@ namespace Purchasing_Management_System
 
         private void txtRequestedBy_TextChanged(object sender, EventArgs e)
         {
-            if(!isUpdatingTextBox)
+            if (!isUpdatingTextBox)
             {
                 string usr = txtRequestedBy.Text;
                 if (!string.IsNullOrEmpty(usr))
                 {
                     ShowUserSelectionForm(txtRequestedBy, paneltask1, false, usr);
                 }
-            }   
+            }
         }
     }
 }

@@ -251,7 +251,6 @@ namespace Purchasing_Management_System
                 clickedButton.ForeColor = Color.Black;
                 lastClickedButton = clickedButton;
             }
-
         }
 
     }
